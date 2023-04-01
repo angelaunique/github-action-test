@@ -9,9 +9,15 @@ jobs:
   create_pull_request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: npm install
       - name: Create Pull Request
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -22,7 +28,8 @@ jobs:
               repo: context.repo.repo,
               title: title,
               body: body,
-              head: 'test', // replace with the branch name you want to merge
+              head: 'your-branch-name', // replace with the branch name you want to merge
               base: 'main' // replace with the branch you want to merge into
             });
             console.log(`Created Pull Request: ${data.html_url}`);
+
