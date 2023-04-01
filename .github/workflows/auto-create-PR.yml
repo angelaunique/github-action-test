@@ -1,14 +1,12 @@
 name: Create Pull Request
 
 on:
-  push:
-    branches-ignore:
-      - main
+  push
 
 jobs:
   creating-pr:
     name: Create Pull Request
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
