@@ -8,6 +8,13 @@ on:
 jobs:
   updateAuthor:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.workspace }}
+    container:
+      image: node:16
+      
     steps:
       - name: checkout out code
         uses: actions/checkout@v2
